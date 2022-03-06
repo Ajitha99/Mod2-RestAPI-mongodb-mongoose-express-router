@@ -9,7 +9,7 @@ const Transaction = new Schema(
         payment_type: {type: String, required: true},
         card_number: {type: Number, unique: true, required: true},
         paid_Amount: {type: Number, required: true},                         
-        payment_date: {type: Date, required: false}
+        payment_date: {type: Date, default: Date.now, required: true}
     },
     {timestamps : true}
 );

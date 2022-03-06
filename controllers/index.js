@@ -52,66 +52,39 @@ async function getCustomerById(req, res) {
 
 async function createCustomer(req, res) {
     try {
-        
-
-        // const object = { a: 5, b: 6, c: 7  };
-        // const picked = (({ a, c }) => ({ a, c }))(object);
+        //selecting age, gender, address, passportNo - created new customer - _id will be generated
         let body = _.pick(req.body, ['age','gender','Address', 'passportNo'])
         const customer1 = await new Customer(body);
-        // req.body.customer.forEach(function(element){
-        //     element.customer = customer1._id;
-        //     let guest = new Guest(element);
-        //     customer1.customer.push(guest._id);
-        //     guest.save().catch((error) => console.log(error));
-
-        // })
+        
+        //first creating guest by getting customer:-- data from request.body data
             let guest = new Guest(req.body.customer);
-            guest.customer = customer1._id;
-            customer1.customer = guest._id;
-            guest.save().catch((error) => console.log(error));
+            guest.customer = customer1._id; //assigning customer unique id to guest
+            customer1.customer = guest._id; //assigning guest unique id to customer
+            guest.save().catch((error) => console.log(error)); //saving guest data to db
 
-        // req.body.ship_Itenary.forEach(function(element){
-        //     element.customer = customer1._id;
-        //     element.guest = guest._id;
-        //     element.Ship = "62237795a5d185d16c05b735";
-        //     let itenary = new Itenary(element);
-        //     customer1.ship_Itenary.push(itenary._id);
-        //     itenary.save().catch((error) => console.log(error));
-        // })
+
+        //creating Itenary by getting ship_Itenary fields data from request.body data
             let itenary = new Itenary(req.body.ship_Itenary);
-            itenary.customer = customer1._id;
-            itenary.guest = guest._id;
-            customer1.ship_Itenary = itenary._id;
-            itenary.save().catch((error) => console.log(error));
-        // req.body.transaction.forEach(function(element){
-        //     element.customer = customer1._id;
-        //     element.guest = guest._id;
-        //     let transaction = new Transaction(element);
-        //     customer1.transaction.push(transaction._id);
-        //     transaction.save().catch((error) => console.log(error));
-        // })
+            itenary.customer = customer1._id; // assigning customer _id to itenary
+            itenary.guest = guest._id; //assigning guest _id to itenary guest field
+            customer1.ship_Itenary = itenary._id; //assigning itenary id to customer
+            itenary.save().catch((error) => console.log(error)); //saving Itenary data to db
+        
+        //creating Transaction by getting transaction fields from request.body data --for customer
             let transaction = new Transaction(req.body.transaction);
             transaction.customer = customer1._id;
             transaction.guest = guest._id;
             customer1.transaction = transaction._id;
-            transaction.save().catch((error) => console.log(error));
-
-
-        // req.body.meal.forEach(function(element){
-        //     element.customer = customer1._id;
-        //     element.guest = guest._id;
-        //     let meal = new Meal(element);
-        //     customer1.meal.push(meal._id);
-        //     meal.save().catch((error) => console.log(error));
-        // })
+            transaction.save().catch((error) => console.log(error));//saving transaction data to db -updates in transaction collection as well
+        //creating meal
             let meal = new Meal(req.body.meal);
             meal.customer = customer1._id;
             meal.guest = guest._id;
             customer1.meal = meal._id;
             meal.save().catch((error) => console.log(error));
-            
+        //saving customer to db 
         await customer1.save()
-        return res.status(201).json({customer1})
+        return res.status(201).json({customer1})//result in postman body if the insertion is a success.
     
       } catch (error) {
         return res.status(500).json({error: error.message})
