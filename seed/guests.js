@@ -7,6 +7,7 @@ const Ship = require('../models/ship');
 const Customer = require('../models/customer');
 
 const main = async () =>{
+    //Creating Ships
     const ship1 = await new Ship({ ship_name: "Harmony of the Seas", ship_capacity: 5479, ship_crew: "deck and engineering crew, kitchen, service and hospitality, personal care and Medical crew" });
     ship1.save();
 
@@ -22,6 +23,7 @@ const main = async () =>{
     const ship5 = await new Ship({ ship_name: "Quantum of the Seas", ship_capacity: 4905, ship_crew: "deck and engineering crew, kitchen, service and hospitality, personal care and Medical crew" });
     ship5.save();
 //*********************************************************************************************************************************************************
+    //Creating new guests
     const guest1 = await new Guest({   
         first_name:"Ron",
         last_name: "Ottawa",
@@ -42,6 +44,7 @@ const main = async () =>{
        })
     guest3.save();
 //*********************************************************************************************************************************************************
+       //Transaction data - and guest data connected through guest Object_id
     const transaction1 = await new Transaction(
         {
             guest: guest1._id,
@@ -78,6 +81,7 @@ const main = async () =>{
     );
     transaction3.save();
 //*********************************************************************************************************************************************************
+           //Itenary data - and guest data connected through guest Object_id and ship Object_id
     const itenary1 = await new Itenary(
         {
             guest: guest1._id,
@@ -119,6 +123,7 @@ const main = async () =>{
     );
     itenary3.save();
 //*********************************************************************************************************************************************************
+    //Meal data - and guest data connected through guest Object_id
     const meal1 = await new Meal(
         {
             guest: guest1._id,
@@ -145,6 +150,7 @@ const main = async () =>{
     meal3.save();
 
 //*********************************************************************************************************************************************************
+//Creating customer data - with refereces other documents by guest (by guest Object_id),Itenary(by itenary Object _id), Transaction(by trnsaction Object _id), and Meal (by meal Object _id)
 const customers = [
                     {
                         customer: guest1._id,
@@ -195,6 +201,7 @@ const customers = [
                         meal: meal3._id,
                     }
                 ]
+    //inserting customers data to db
     await Customer.insertMany(customers);
     console.log("created Customers");
 
@@ -207,114 +214,3 @@ const run = async () => {
 run()
 
 
-
-
-
-// const guests = [
-//     {       
-//             _id: "R5782",
-//             name: "Ron Ottawa" ,
-//             age: 50,
-//             gender: "male",
-//             Address: {
-//                    street: "7 Lyncoln dr" ,
-//                    city: "Edison",
-//                    state: "NJ",
-//                    zip:	08059,
-//                    country: "USA"},
-//             email: "ron.ottawa@gmail.com",
-//             passportNo: "G00006789" ,
-//             group_id: "SF0123",
-//             ship_Itenary: {
-//                        //ship_id: ship1._id ,
-//                        //_id: "R5782-11",
-//                        guest_id: "R5782",
-//                        ship_route: "Port Canaveral, USA, Florida - Nassau, Bahamas - Falmouth, Jamaica - Coco Cay, Labadee, Haiti, Port Canaveral, USA" ,
-//                        ship_port: "Port Canaveral, USA, Florida",
-//                        ship_startDate: "2022-03-13T17:00:00",
-//                        ship_endDate: "2022-03-20T06:00:00" ,
-//                        ship_roomType: "Ocean view",
-//                        ship_roomPrice: 782
-//                        },
-//             transaction: {
-//                         guest_id: "R5782",
-//                         account_id: "Ron50",
-//                         payment_type: "CREDIT CARD",
-//                         card_number: 3511026704717280,
-//                         paid_Amount: 1564,                         
-//                         payment_date: new Date()
-//                        },
-//             meal: {
-//                       guest_id: "R5782",
-//                       meal_preference: "Standard" ,
-//                       food_allergies: "Peanuts, apricots"
-//                    }
-           
-//                }
-// ]
-
-// await Guest.insertMany(guests);
-// console.log("Created Guests!")
-
-
-// const itineraries = [
-//     {  guest_id: "R5548",
-//        ship_route: "Updated" ,
-//        ship_port: "Test Data",
-//        ship_startDate: "2022-03-13T17:00:00",
-//        ship_endDate: "2022-03-20T06:00:00" ,
-//        ship_roomType: "Ocean view",
-//        ship_roomPrice: 782
-//        }
-//     ]
-// await Itenary.insertMany(itineraries);
-// console.log("created Itenary");
-
-
-
-
-
-
-
-// {
-//     name: ,
-//     age: ,
-//     gender: {type: String, required: true},
-//     Address: {
-//            street: ,
-//            city: ,
-//            state: ,
-//            zip:	,
-//            country: },
-//     email: ,
-//     passportNo: ,
-//     group_id: ,
-//     ship_Itenaryid: {
-//                ship_id: {
-//                        ship_name: ,
-//                            ship_capacity: ,
-//                            ship_crew: 
-//                        },
-//                guest_id: ,
-//                ship_route: ,
-//                ship_port: ,
-//                ship_startDate: ,
-//                ship_endDate: ,
-//                    ship_roomType: ,
-//                    ship_roomPrice: 
-//                },
-//     transaction_id: {
-//                guest_id: ,
-//                    account_id: ,
-//                    payment_type: ,
-//                    card_number: ,
-//                    paid_Amount: ,                         
-//                    payment_date: 
-//                },
-    
-//    meal_id: {
-//            meal_preference: ,
-//               food_allergies: 
-//            }
-   
-//        }

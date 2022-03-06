@@ -6,6 +6,8 @@ const db = require('./db');
 
 const logger = require('morgan');//debugging tool
 
+//const _ = require('lodash');
+
 const PORT = process.env.PORT || 3000;
 
 const app = express();

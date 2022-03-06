@@ -23,7 +23,7 @@ const Customer = new Schema(
         gender: {type: String, required: true},
         Address: Address,
         // email: {type: String, required: true},
-        passportNo: {type: String, required: true},
+        passportNo: {type: String, unique: true, required: true},
         ship_Itenary: {type: Schema.Types.ObjectId, ref: 'itineraries', required: true},
         transaction: {type: Schema.Types.ObjectId, ref: 'transactions', required: true},
         meal: {type: Schema.Types.ObjectId, ref: 'meals', required: true},

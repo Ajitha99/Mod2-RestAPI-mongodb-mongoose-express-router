@@ -2,6 +2,7 @@
 const { Router } = require('express');
 
 const controllers = require('../controllers')
+// const _ = require('lodash');
 
 const router = Router();
 
@@ -9,6 +10,11 @@ router.get('/', (req, res) => res.send("This is the route!"));
 
 router.get('/customers', controllers.getAllCustomers);
 router.get('/itenary', controllers.getAllItenary);
+router.get('/ships', controllers.getAllShipData);
+router.get('/customers/:id', controllers.getCustomerById);
+
+router.post('/customers', controllers.createCustomer);
+
 
 // router.post('/plants', controllers.createPlant);
 

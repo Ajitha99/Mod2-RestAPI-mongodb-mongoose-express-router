@@ -7,7 +7,7 @@ const Guest = new Schema(
     {   
         first_name: {type: String, required: true},
         last_name: {type: String, required: true},
-        email_id: {type: String, required: true}
+        email_id: {type: String, unique: true, required: true}
     },
     {timestamps: true}
 );
