@@ -37,6 +37,15 @@ async function getAllItinerary(req,res){
       }
 }
 
+async function getAllGuest(req,res){
+  try{
+    const guests = await Guest.find({});
+    res.status(200).json({guests});
+  }catch(error){
+    return res.status(500).send(error.message);
+  }
+}
+
 async function getCustomerById(req, res) {
         try {
             const { id } = req.params;
@@ -48,6 +57,30 @@ async function getCustomerById(req, res) {
         } catch (error) {
             return res.status(500).send(error.message);
         }
+}
+async function getItineraryById(req, res) {
+  try {
+      const { id } = req.params;
+      const itinerary = await Itinerary.findById(id).populate("guest").populate("ship");
+      if(itinerary){
+          res.status(200).json({itinerary})
+      }
+      return res.status(404).send('Itinerary with the specified ID does not exist');
+  } catch (error) {
+      return res.status(500).send(error.message);
+  }
+}
+async function getGuestById(req, res) {
+  try {
+      const { id } = req.params;
+      const guest = await Guest.findById(id);
+      if(guest){
+          res.status(200).json({guest})
+      }
+      return res.status(404).send('Guest with the specified ID does not exist');
+  } catch (error) {
+      return res.status(500).send(error.message);
+  }
 }
 
 async function createCustomer(req, res) {
@@ -109,8 +142,26 @@ async function updateCustomer(req, res){
         } catch (error) {
          return  res.status(500).send(error.message)
         }
-      
+   
 
+}
+
+async function updateGuest(req, res){ 
+  try {
+        const { id } = req.params
+        Guest.findByIdAndUpdate(id, req.body, { new: true }, (err, guest) => {
+         
+          if (err !== null) {
+            console.log(err, 'error')
+            res.status(404).send(err.message)
+          } else {
+            console.log(guest)
+            res.json(guest)
+          }
+        })
+      } catch (error) {
+       return  res.status(500).send(error.message)
+      }
 }
 
 async function deleteCustomer(req, res) {
@@ -133,7 +184,11 @@ module.exports = {
     getAllShipData,
     getAllCustomers,
     getAllItinerary,
+    getAllGuest,
     getCustomerById,
+    getItineraryById,
+    getGuestById,
     updateCustomer,
+    updateGuest,
     deleteCustomer
 }
