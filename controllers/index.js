@@ -53,7 +53,9 @@ async function getCustomerById(req, res) {
             if(customer){
                 res.status(200).json({customer})
             }
+            else{
             return res.status(404).send('Customer with the specified ID does not exist');
+            }
         } catch (error) {
             return res.status(500).send(error.message);
         }
@@ -65,7 +67,9 @@ async function getItineraryById(req, res) {
       if(itinerary){
           res.status(200).json({itinerary})
       }
-      return res.status(404).send('Itinerary with the specified ID does not exist');
+      else{ 
+        return res.status(404).send('Itinerary with the specified ID does not exist');
+      }
   } catch (error) {
       return res.status(500).send(error.message);
   }
@@ -77,7 +81,9 @@ async function getGuestById(req, res) {
       if(guest){
           res.status(200).json({guest})
       }
+      else{
       return res.status(404).send('Guest with the specified ID does not exist');
+      }
   } catch (error) {
       return res.status(500).send(error.message);
   }
