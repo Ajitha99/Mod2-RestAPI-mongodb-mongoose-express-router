@@ -1,7 +1,7 @@
 //const res = require('express/lib/response');
 const Ship = require('../models/ship');
 const Customer = require('../models/customer');
-const Itenary = require('../models/itenary');
+const Itinerary = require('../models/itinerary');
 const Transaction = require('../models/transaction');
 const Meal = require('../models/meal');
 const Guest = require('../models/guest');
@@ -20,7 +20,7 @@ async function getAllShipData(req, res){
 }
 async function getAllCustomers(req, res) {
     try {
-        const customers = await Customer.find().populate("customer").populate("ship_Itenary").populate("transaction").populate("meal");
+        const customers = await Customer.find().populate("customer").populate("ship_Itinerary").populate("transaction").populate("meal");
         return res.status(200).json({customers})
       } catch (error) {
         return res.status(500).send(error.message);
@@ -28,9 +28,9 @@ async function getAllCustomers(req, res) {
 
 
 }
-async function getAllItenary(req,res){
+async function getAllItinerary(req,res){
     try{
-        const itineraries = await Itenary.find({}).populate("ship").populate("guest");
+        const itineraries = await Itinerary.find({}).populate("ship").populate("guest");
         res.status(200).json({itineraries});
     }catch (error) {
         return res.status(500).send(error.message);
@@ -40,7 +40,7 @@ async function getAllItenary(req,res){
 async function getCustomerById(req, res) {
         try {
             const { id } = req.params;
-            const customer = await Customer.findById(id).populate("customer").populate("ship_Itenary").populate("transaction").populate("meal");
+            const customer = await Customer.findById(id).populate("customer").populate("ship_Itinerary").populate("transaction").populate("meal");
             if(customer){
                 res.status(200).json({customer})
             }
@@ -63,12 +63,12 @@ async function createCustomer(req, res) {
             guest.save().catch((error) => console.log(error)); //saving guest data to db
 
 
-        //creating Itenary by getting ship_Itenary fields data from request.body data
-            let itenary = new Itenary(req.body.ship_Itenary);
-            itenary.customer = customer1._id; // assigning customer _id to itenary
-            itenary.guest = guest._id; //assigning guest _id to itenary guest field
-            customer1.ship_Itenary = itenary._id; //assigning itenary id to customer
-            itenary.save().catch((error) => console.log(error)); //saving Itenary data to db
+        //creating Itinerary by getting ship_Itinerary fields data from request.body data
+            let itinerary = new Itinerary(req.body.ship_Itinerary);
+            itinerary.customer = customer1._id; // assigning customer _id to itinerary
+            itinerary.guest = guest._id; //assigning guest _id to itinerary guest field
+            customer1.ship_Itinerary = itinerary._id; //assigning itinerary id to customer
+            itinerary.save().catch((error) => console.log(error)); //saving Itinerary data to db
         
         //creating Transaction by getting transaction fields from request.body data --for customer
             let transaction = new Transaction(req.body.transaction);
@@ -94,11 +94,36 @@ async function createCustomer(req, res) {
 }
 async function updateCustomer(req, res){
     
+    try {
+          const { id } = req.params
+          Customer.findByIdAndUpdate(id, req.body, { new: true }, (err, customer) => {
+           
+            if (err !== null) {
+              console.log(err, 'error')
+              res.status(404).send(err.message)
+            } else {
+              console.log(customer)
+              res.json(customer)
+            }
+          })
+        } catch (error) {
+         return  res.status(500).send(error.message)
+        }
+      
 
 }
 
 async function deleteCustomer(req, res) {
-  
+    try {
+        const { id } = req.params;
+        const deleted = await Customer.findByIdAndDelete(id)
+        if (deleted) {
+          return res.status(200).send("Customer Deleted");
+        }
+        throw new Error("Customer not found");
+      } catch (error) {
+        return res.status(500).send(error.message);
+      }
 }
 
 
@@ -107,7 +132,7 @@ module.exports = {
     createCustomer,
     getAllShipData,
     getAllCustomers,
-    getAllItenary,
+    getAllItinerary,
     getCustomerById,
     updateCustomer,
     deleteCustomer

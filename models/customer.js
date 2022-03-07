@@ -18,13 +18,11 @@ const Address = new Schema(
 const Customer = new Schema(
     {
         customer: {type: Schema.Types.ObjectId, ref: 'guests' , required: true},
-        //name: {type: String, required: true},
         age: {type: String, required: true},
         gender: {type: String, required: true},
         Address: Address,
-        // email: {type: String, required: true},
         passportNo: {type: String, unique: true, required: true},
-        ship_Itenary: {type: Schema.Types.ObjectId, ref: 'itineraries', required: true},
+        ship_Itinerary: {type: Schema.Types.ObjectId, ref: 'itineraries', required: true},
         transaction: {type: Schema.Types.ObjectId, ref: 'transactions', required: true},
         meal: {type: Schema.Types.ObjectId, ref: 'meals', required: true},
     },

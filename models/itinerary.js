@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 
-const Itenary = new Schema(
+const Itinerary = new Schema(
     {
         guest: {type: Schema.Types.ObjectId, ref: 'guests', required: true},
         ship: {type: Schema.Types.ObjectId, ref: 'ships', required: true},
@@ -18,4 +18,4 @@ const Itenary = new Schema(
     {timestamps : true}
 );
 
-module.exports = mongoose.model('itineraries', Itenary);
+module.exports = mongoose.model('itineraries', Itinerary);

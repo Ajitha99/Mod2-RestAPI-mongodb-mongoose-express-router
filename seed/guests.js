@@ -1,6 +1,6 @@
 const db = require('../db');
 const Guest = require('../models/guest');
-const Itenary = require('../models/itenary');
+const Itinerary = require('../models/itinerary');
 const Transaction = require('../models/transaction');
 const Meal = require('../models/meal');
 const Ship = require('../models/ship');
@@ -81,8 +81,8 @@ const main = async () =>{
     );
     transaction3.save();
 //*********************************************************************************************************************************************************
-           //Itenary data - and guest data connected through guest Object_id and ship Object_id
-    const itenary1 = await new Itenary(
+           //Itinerary data - and guest data connected through guest Object_id and ship Object_id
+    const itinerary1 = await new Itinerary(
         {
             guest: guest1._id,
             ship: ship1._id,
@@ -94,8 +94,8 @@ const main = async () =>{
             ship_roomPrice: 782
            }
     );
-    itenary1.save();
-    const itenary2 = await new Itenary(
+    itinerary1.save();
+    const itinerary2 = await new Itinerary(
         {
             guest: guest2._id,
             ship: ship2._id,
@@ -107,9 +107,9 @@ const main = async () =>{
             ship_roomPrice: 2886
            }
     );
-    itenary2.save();
+    itinerary2.save();
 
-    const itenary3 = await new Itenary(
+    const itinerary3 = await new Itinerary(
         {
             guest: guest3._id,
             ship: ship3._id,
@@ -121,7 +121,7 @@ const main = async () =>{
             ship_roomPrice: 684
            }
     );
-    itenary3.save();
+    itinerary3.save();
 //*********************************************************************************************************************************************************
     //Meal data - and guest data connected through guest Object_id
     const meal1 = await new Meal(
@@ -150,7 +150,7 @@ const main = async () =>{
     meal3.save();
 
 //*********************************************************************************************************************************************************
-//Creating customer data - with refereces other documents by guest (by guest Object_id),Itenary(by itenary Object _id), Transaction(by trnsaction Object _id), and Meal (by meal Object _id)
+//Creating customer data - with refereces other documents by guest (by guest Object_id),Itinerary(by itinerary Object _id), Transaction(by trnsaction Object _id), and Meal (by meal Object _id)
 const customers = [
                     {
                         customer: guest1._id,
@@ -164,7 +164,7 @@ const customers = [
                             country: "USA"
                                 },
                         passportNo: "G00006789" ,
-                        ship_Itenary: itenary1._id,
+                        ship_Itinerary: itinerary1._id,
                         transaction: transaction1._id,
                         meal: meal1._id,
                     },
@@ -180,7 +180,7 @@ const customers = [
                             country: "USA"
                                 },
                         passportNo: "H01101189" ,
-                        ship_Itenary: itenary2._id,
+                        ship_Itinerary: itinerary2._id,
                         transaction: transaction2._id,
                         meal: meal2._id,
                     },
@@ -196,7 +196,7 @@ const customers = [
                             country: "USA"
                                 },
                         passportNo: "GH02201000" ,
-                        ship_Itenary: itenary3._id,
+                        ship_Itinerary: itinerary3._id,
                         transaction: transaction3._id,
                         meal: meal3._id,
                     }
