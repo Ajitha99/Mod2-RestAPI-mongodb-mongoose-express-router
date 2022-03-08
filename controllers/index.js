@@ -122,7 +122,7 @@ function createCustomer(req, res) {
             customer1.meal = meal._id;
             meal.save().catch((error) => console.log(error));
         //saving customer to db 
-        await customer1.save()
+         customer1.save()
         return res.status(201).json({customer1})//result in postman body if the insertion is a success.
     
       } catch (error) {
