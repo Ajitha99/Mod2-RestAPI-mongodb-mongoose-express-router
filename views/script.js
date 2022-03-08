@@ -71,9 +71,6 @@ function renderShipData(data){
     const divShip = document.createElement('div');
     divCustomer.className = "div-ship";
     const ship = document.createElement('div');
-    ship.inn
-
-
 }
 
 
