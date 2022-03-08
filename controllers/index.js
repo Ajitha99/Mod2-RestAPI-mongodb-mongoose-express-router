@@ -9,18 +9,18 @@ const _ = require('lodash');
 
 
 
-async function getAllShipData(req, res){
+function getAllShipData(req, res){
     try{
-        const ships = await Ship.find();
+        const ships =  Ship.find();
         return res.status(200).json(ships);
     }
     catch(error){
         return res.status(500).send(error.message);
     }
 }
-async function getAllCustomers(req, res) {
+ function getAllCustomers(req, res) {
     try {
-        const customers = await Customer.find().populate("customer").populate("ship_Itinerary").populate("transaction").populate("meal");
+        const customers =  Customer.find().populate("customer").populate("ship_Itinerary").populate("transaction").populate("meal");
         return res.status(200).json({customers})
       } catch (error) {
         return res.status(500).send(error.message);
@@ -28,28 +28,28 @@ async function getAllCustomers(req, res) {
 
 
 }
-async function getAllItinerary(req,res){
+function getAllItinerary(req,res){
     try{
-        const itineraries = await Itinerary.find({}).populate("ship").populate("guest");
+        const itineraries =  Itinerary.find({}).populate("ship").populate("guest");
         res.status(200).json({itineraries});
     }catch (error) {
         return res.status(500).send(error.message);
       }
 }
 
-async function getAllGuest(req,res){
+ function getAllGuest(req,res){
   try{
-    const guests = await Guest.find({});
+    const guests =  Guest.find({});
     res.status(200).json({guests});
   }catch(error){
     return res.status(500).send(error.message);
   }
 }
 
-async function getCustomerById(req, res) {
+ function getCustomerById(req, res) {
         try {
             const { id } = req.params;
-            const customer = await Customer.findById(id).populate("customer").populate("ship_Itinerary").populate("transaction").populate("meal");
+            const customer =  Customer.findById(id).populate("customer").populate("ship_Itinerary").populate("transaction").populate("meal");
             if(customer){
                 res.status(200).json({customer})
             }
@@ -60,10 +60,10 @@ async function getCustomerById(req, res) {
             return res.status(500).send(error.message);
         }
 }
-async function getItineraryById(req, res) {
+ function getItineraryById(req, res) {
   try {
       const { id } = req.params;
-      const itinerary = await Itinerary.findById(id).populate("guest").populate("ship");
+      const itinerary =  Itinerary.findById(id).populate("guest").populate("ship");
       if(itinerary){
           res.status(200).json({itinerary})
       }
@@ -74,10 +74,10 @@ async function getItineraryById(req, res) {
       return res.status(500).send(error.message);
   }
 }
-async function getGuestById(req, res) {
+ function getGuestById(req, res) {
   try {
       const { id } = req.params;
-      const guest = await Guest.findById(id);
+      const guest =  Guest.findById(id);
       if(guest){
           res.status(200).json({guest})
       }
@@ -89,11 +89,11 @@ async function getGuestById(req, res) {
   }
 }
 
-async function createCustomer(req, res) {
+function createCustomer(req, res) {
     try {
         //selecting age, gender, address, passportNo - created new customer - _id will be generated
         let body = _.pick(req.body, ['age','gender','Address', 'passportNo'])
-        const customer1 = await new Customer(body);
+        const customer1 = new Customer(body);
         
         //first creating guest by getting customer:-- data from request.body data
             let guest = new Guest(req.body.customer);
@@ -131,7 +131,7 @@ async function createCustomer(req, res) {
     
   
 }
-async function updateCustomer(req, res){
+function updateCustomer(req, res){
     
     try {
           const { id } = req.params
@@ -152,7 +152,7 @@ async function updateCustomer(req, res){
 
 }
 
-async function updateGuest(req, res){ 
+ function updateGuest(req, res){ 
   try {
         const { id } = req.params
         Guest.findByIdAndUpdate(id, req.body, { new: true }, (err, guest) => {
@@ -170,10 +170,10 @@ async function updateGuest(req, res){
       }
 }
 
-async function deleteCustomer(req, res) {
+function deleteCustomer(req, res) {
     try {
         const { id } = req.params;
-        const deleted = await Customer.findByIdAndDelete(id)
+        const deleted = Customer.findByIdAndDelete(id)
         if (deleted) {
           return res.status(200).send("Customer Deleted");
         }
