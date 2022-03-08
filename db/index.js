@@ -4,12 +4,13 @@ let MONGODB_URI = process.env.PROD_MONGODB || process.env.MONGODB_URI || 'mongod
 
 mongoose.connect (MONGODB_URI, {
     useUnifiedTopology : true, useNewUrlParser: true,
-    serverSelectionTimeoutMS: 5000,
-    autoIndex: false, 
-    maxPoolSize: 10, 
-    serverSelectionTimeoutMS: 5000, 
-    socketTimeoutMS: 45000,
-    family: 4}). then(() => {
+    // serverSelectionTimeoutMS: 5000,
+    // autoIndex: false, 
+    // maxPoolSize: 10, 
+    // serverSelectionTimeoutMS: 5000, 
+    // socketTimeoutMS: 45000,
+    // family: 4   
+}). then(() => {
     console.log("Successfully connected to MongoDB!")
 }).catch(e => {
     console.error('Connection error', e.message)
