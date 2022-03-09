@@ -19,6 +19,12 @@ app.use(cors({
     origin: "http://127.0.0.1:5501",
 }))
 
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+    
+//     next();
+// });
+
 
 //They are parsing our data that we send out
 app.use(express.json());

@@ -20,6 +20,7 @@ btnCustomer.addEventListener('click', async () =>{
         let response = await axios.get(`${BASE_URL}customers`);
         console.log(response.data.customers);
         // urlDiv.removeChild()
+        resultDiv.innerHTML = " ";
         renderData(response.data.customers);
         
     } catch (error) {
@@ -29,7 +30,7 @@ btnCustomer.addEventListener('click', async () =>{
 
 
 function renderData(data){
-
+    
     urlDiv.innerHTML =" ";//clears data before appending new data
     urlDiv.style.display = "block";
     const pEle = document.createElement('p');

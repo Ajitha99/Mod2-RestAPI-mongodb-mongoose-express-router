@@ -95,14 +95,21 @@ async function createCustomer(req, res) {
         //selecting age, gender, address, passportNo - created new customer - _id will be generated
         let body = _.pick(req.body, ['age','gender','Address', 'passportNo'])
         const customer1 = await new Customer(body);
-        
+          try{
         //first creating guest by getting customer:-- data from request.body data
             let guest = new Guest(req.body.customer);
             guest.customer = customer1._id; //assigning customer unique id to guest
             customer1.customer = guest._id; //assigning guest unique id to customer
+            if(guest != null){
             guest.save().catch((error) => console.log(error)); //saving guest data to db
-
-
+            }
+            else{
+              return res.status(404).send('validation failed');
+            }
+          }
+          catch(error){
+            return res.status(400).json({error: error.message})
+          }
         //creating Itinerary by getting ship_Itinerary fields data from request.body data
             let itinerary = new Itinerary(req.body.ship_Itinerary);
             itinerary.customer = customer1._id; // assigning customer _id to itinerary
