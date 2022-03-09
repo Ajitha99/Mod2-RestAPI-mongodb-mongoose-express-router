@@ -170,6 +170,23 @@ async function updateGuest(req, res){
        return  res.status(500).send(error.message)
       }
 }
+async function updateItinerary(req, res){ 
+  try {
+        const { id } = req.params
+        Itinerary.findByIdAndUpdate(id, req.body, { new: true }, (err, itinerary) => {
+         
+          if (err !== null) {
+            console.log(err, 'error')
+            res.status(404).send(err.message)
+          } else {
+            console.log(itinerary)
+            res.json(itinerary)
+          }
+        })
+      } catch (error) {
+       return  res.status(500).send(error.message)
+      }
+}
 
 async function deleteCustomer(req, res) {
     try {
@@ -197,5 +214,6 @@ module.exports = {
     getGuestById,
     updateCustomer,
     updateGuest,
+    updateItinerary,
     deleteCustomer
 }

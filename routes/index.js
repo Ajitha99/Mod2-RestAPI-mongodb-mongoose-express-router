@@ -38,6 +38,9 @@ router.put('/customers/:id', controllers.updateCustomer);
 //update guest details
 router.put('/guest/:id', controllers.updateGuest);
 
+//update guest details
+router.put('/itinerary/:id', controllers.updateItinerary);
+
 //delete customer
 router.delete('/customers/:id', controllers.deleteCustomer);
 
