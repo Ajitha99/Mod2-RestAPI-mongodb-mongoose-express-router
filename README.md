@@ -1,7 +1,7 @@
 # Mod2-RestAPI-mongodb-mongoose-express-router
 
 
-###It is a cruise customer data REST API. Users can get information using the API call. Users can create  new customers,modify customer. Also can modify guest, and itinerary data. 
+#### It is a cruise customer data REST API. Users can get information using the API call. Users can create  new customers,modify customer. Also can modify guest, and itinerary data. 
 
     ### User can:
         1. get customer data
@@ -15,8 +15,12 @@
         9. put customer data by Id
         10. put guest data by Id
         11. delete customer by Id
+        
+# Technologies used:
     
-#Instructions on Installing & Running Locally
+  ##### HTML, CSS, JavaScript, node.js, Express, MongoDB, Mongoose.
+    
+# Instructions on Installing & Running Locally
 -------------------
 Cruise API is deployed on Heroku, below is the link to root directory.
 
@@ -43,7 +47,7 @@ For running locally:
         * run node/seed/.guests.js
         * npm run start
 
-#Endpoints, Parameters, Schema
+# Endpoints, Parameters, Schema
 -----------------
 
 BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
@@ -140,13 +144,13 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
    
 2. Itinerary end points
 
-    *  GET: /itinerary
+*  GET: /itinerary
     
   ##### result: gets all itinerary data.
 
    ##### example: https://your-new-heroku-app-name.herokuapp.com/api/itinerary
 
-    *  GET: /itinerary/:id
+*  GET: /itinerary/:id
     
    ##### result: gets the itinerary data matches with the id.
 
@@ -154,19 +158,19 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
   
 3. Guest end points
 
-    *  GET: /guest
+*  GET: /guest
     
   ##### result: gets all guest data.
 
    ##### example: https://your-new-heroku-app-name.herokuapp.com/api/guest
 
-    *  GET: /guest/:id
+*  GET: /guest/:id
     
    ##### result: gets the guest data matches with the id.
 
   ##### example: https://your-new-heroku-app-name.herokuapp.com/api/guest/6228ce0cb43364a04fb93681
   
-    * PUT:  /guest/:id
+* PUT:  /guest/:id
     
     ##### result: modifies guest data by guest id.
     
@@ -182,7 +186,7 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
 
 4. Ship end points
 
-    *  GET: /ships
+*  GET: /ships
 
     ##### result: gets all ship data.
 
