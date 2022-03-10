@@ -15,6 +15,10 @@
         9. put customer data by Id
         10. put guest data by Id
         11. delete customer by Id
+        
+# Technologies used:
+    
+  ##### HTML, CSS, JavaScript, node.js, Express, MongoDB, Mongoose.
     
 #Instructions on Installing & Running Locally
 -------------------
