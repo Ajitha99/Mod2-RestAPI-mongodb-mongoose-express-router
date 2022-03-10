@@ -140,13 +140,13 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
    
 2. Itinerary end points
 
-    *  GET: /itinerary
+*  GET: /itinerary
     
   ##### result: gets all itinerary data.
 
    ##### example: https://your-new-heroku-app-name.herokuapp.com/api/itinerary
 
-    *  GET: /itinerary/:id
+*  GET: /itinerary/:id
     
    ##### result: gets the itinerary data matches with the id.
 
@@ -154,19 +154,19 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
   
 3. Guest end points
 
-    *  GET: /guest
+*  GET: /guest
     
   ##### result: gets all guest data.
 
    ##### example: https://your-new-heroku-app-name.herokuapp.com/api/guest
 
-    *  GET: /guest/:id
+*  GET: /guest/:id
     
    ##### result: gets the guest data matches with the id.
 
   ##### example: https://your-new-heroku-app-name.herokuapp.com/api/guest/6228ce0cb43364a04fb93681
   
-    * PUT:  /guest/:id
+* PUT:  /guest/:id
     
     ##### result: modifies guest data by guest id.
     
@@ -182,7 +182,7 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
 
 4. Ship end points
 
-    *  GET: /ships
+*  GET: /ships
 
     ##### result: gets all ship data.
 
