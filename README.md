@@ -1,7 +1,7 @@
 # Mod2-RestAPI-mongodb-mongoose-express-router
 
 
-###It is a cruise customer data REST API. Users can get information using the API call. Users can create  new customers,modify customer. Also can modify guest, and itinerary data. 
+### It is a cruise customer data REST API. Users can get information using the API call. Users can create  new customers,modify customer. Also can modify guest, and itinerary data. 
 
     ### User can:
         1. get customer data
@@ -20,7 +20,7 @@
     
   ##### HTML, CSS, JavaScript, node.js, Express, MongoDB, Mongoose.
     
-#Instructions on Installing & Running Locally
+# Instructions on Installing & Running Locally
 -------------------
 Cruise API is deployed on Heroku, below is the link to root directory.
 
@@ -47,7 +47,7 @@ For running locally:
         * run node/seed/.guests.js
         * npm run start
 
-#Endpoints, Parameters, Schema
+# Endpoints, Parameters, Schema
 -----------------
 
 BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
