@@ -19,8 +19,6 @@ btnCustomer.addEventListener('click', async () =>{
     try {
         let response = await axios.get(`${BASE_URL}customers`);
         console.log(response.data.customers);
-        // urlDiv.removeChild()
-        resultDiv.innerHTML = " ";
         renderData(response.data.customers);
         
     } catch (error) {
@@ -37,9 +35,8 @@ function renderData(data){
     pEle.innerHTML = `API LINK: ${BASE_URL}customers`;
     urlDiv.appendChild(pEle);
     // urlDiv.replaceWith(pEle);
-
+    divCustomer.innerHTML = " ";
     for(let i = 0; i < data.length; i++){
-    
     const customer = document.createElement('div');
     customer.innerHTML += `Customer ${i + 1}`;
     customer.style.textDecorationLine = "underline";
@@ -88,6 +85,7 @@ function renderShipData(data){
     const pEle = document.createElement('p');
     pEle.innerHTML = `API LINK: ${BASE_URL}ships`;
     urlDiv.appendChild(pEle);
+    divShip.innerHTML = " ";
     for(let i = 0; i < data.length; i++){
         console.log(data.length);
         // console.log(data[i].ship_name);
@@ -126,7 +124,7 @@ function renderShipItinerary(data){
     const pEle = document.createElement('p');
     pEle.innerHTML = `API LINK: ${BASE_URL}itinerary`;
     urlDiv.appendChild(pEle);
-
+    divItinerary.innerHTML = " ";
     for(let i = 0; i < data.length; i++){
         console.log(data.length);
         const itinerary = document.createElement('div');
