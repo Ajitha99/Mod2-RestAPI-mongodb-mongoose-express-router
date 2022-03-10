@@ -147,6 +147,7 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
    ##### example: https://your-new-heroku-app-name.herokuapp.com/api/itinerary
 
     *  GET: /itinerary/:id
+    
    ##### result: gets the itinerary data matches with the id.
 
   ##### example: https://your-new-heroku-app-name.herokuapp.com/api/itinerary/6227c561b708d394817eb35d
@@ -160,6 +161,7 @@ BASE-URL:https://your-new-heroku-app-name.herokuapp.com/api/
    ##### example: https://your-new-heroku-app-name.herokuapp.com/api/guest
 
     *  GET: /guest/:id
+    
    ##### result: gets the guest data matches with the id.
 
   ##### example: https://your-new-heroku-app-name.herokuapp.com/api/guest/6228ce0cb43364a04fb93681
