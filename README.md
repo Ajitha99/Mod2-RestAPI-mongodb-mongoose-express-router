@@ -38,6 +38,8 @@ For running locally:
         * npm init -y
         * npm i mongoose
         * npm i express
+        * npm i cors
+        * npm i --save lodash
         * npm install --save-dev nodemon
         * add below lines to package.json's scripts tag:
             "scripts": {
