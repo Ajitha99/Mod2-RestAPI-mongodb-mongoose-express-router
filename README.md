@@ -1,9 +1,8 @@
 # Mod2-RestAPI-mongodb-mongoose-express-router
 
-    It is a cruise customer data REST API. Users can get different information using the API,create new customers, and modify customer, guest, itinerary data.
 
+###It is a cruise customer data REST API. Users can get information using the API call. Users can create  new customers,modify customer. Also can modify guest, and itinerary data. 
 
-    
     ### User can:
         1. get customer data
         2. get customer data by Id
